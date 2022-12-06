@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Home
+{% endblock title %}
+{% block content %}
+    <header>
+        <div>
+            <nav>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <div>
+            <h1>My Projects</h1>
+            {% if list_projects.exists %}
+            <table>
+                <thead>
+                        <tr>
+                        <th>Names</th>
+                        <th>Number of tasks</th>
+                    </tr>
+                <tbody>
+                    {% for project in list_projects %}
+                        <tr>
+                            <td> {{ project.name }} </td>
+                            <td></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </thead>
+        </table>
+            {% else %}
+            <p>You are not assigned to any projects</p>
+        {% endif %}
+    </div>
+    </main>
+{% endblock content %}
