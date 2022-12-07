@@ -41,17 +41,12 @@ def signup(request):
             password = form.cleaned_data["password"]
             password_confirmation = form.cleaned_data["password_confirmation"]
             if password == password_confirmation:
-                user = User.objects.create_user(
-                    username,
-                    password=password
-                )
+                user = User.objects.create_user(username, password=password)
                 login(request, user)
                 return redirect("list_projects")
             else:
                 form.add_error("password", "Passwords do not match")
     else:
         form = SignUpForm()
-        context = {
-            "form": form
-        }
+        context = {"form": form}
         return render(request, "accounts/signup.html", context)
