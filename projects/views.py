@@ -8,3 +8,4 @@ def project_list(request):
         "list_projects": list_projects
     }
     return render(request, "projects/list.html", context)
+
