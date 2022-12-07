@@ -1,32 +1,43 @@
 {% extends "base.html" %}
+
+{% block title %}
+    {{ project.name }}
+{% endblock title %}
 {% block content %}
- <main>
-    <div>
-        <h1> My Tasks </h1>
-    {% if tasks.exists %}
-        <table>
-        <thead>
-            <tr>
+    <header>
+        <nav>
+            <a href="{% url 'list_projects' %}">Main</a>
+            <a href="{% url 'create_task' %}">Create a task</a>
+        </nav>
+    </header>
+    <main>
+        <div>
+          <h1> My Tasks </h1>
+        {% if tasks.exists %}
+          <table>
+            <thead>
+              <tr>
                 <th>Name</th>
                 <th>Start date</th>
                 <th>Due date</th>
                 <th>Is completed</th>
-            </tr>
+              </tr>
             </thead>
             <tbody>
-            {% for task in tasks.all %}
-            <tr>
-                <td>{{ task.name }}</td>
-                <td>{{ task.start_date|date:"M d, Y" }}</td>
-                <td>{{ task.due_date|date:"M d, Y" }}</td>
-                <td>{{ task.is_completed|yesno }}</td>
-            </tr>
-            {% endfor %}
+              {% for task in tasks.all %}
+                <tr>
+                  <td>{{ task.name }}</td>
+                  <td>{{ task.start_date|date:"M d, Y" }}</td>
+                  <td>{{ task.due_date|date:"M d, Y" }}</td>
+                  <td>{{ task.is_completed|yesno }}</td>
+                </tr>
+              {% endfor %}
             </tbody>
-    </table>
-    {% else %}
-        <p>You have no tasks</p>
-    {% endif %}
-    </div>
-</main>
+          </table>
+          {% else %}
+          <p>You have no tasks</p>
+          {% endif %}
+        </div>
+      </main>
+
 {% endblock content %}

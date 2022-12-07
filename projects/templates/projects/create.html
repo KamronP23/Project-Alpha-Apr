@@ -1,5 +1,15 @@
 {% extends 'base.html' %}
+
+{% block title %}
+Create
+{% endblock title %}
+
 {% block content %}
+<header>
+    <nav>
+      <a href="{% url 'list_projects' %}">Main page</a>
+    </nav>
+  </header>
   <main>
     <div>
     <h1>Create a new project</h1>
