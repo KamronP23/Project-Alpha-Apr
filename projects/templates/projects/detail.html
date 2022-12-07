@@ -1,15 +1,11 @@
 {% extends "base.html" %}
 
-{% block title %}
-    {{ project.name }}
-{% endblock title %}
+{% block nav %}
+<li>
+  <a href="{% url 'create_task' %}">Create a new task</a>
+</li>
+{% endblock nav %}
 {% block content %}
-    <header>
-        <nav>
-            <a href="{% url 'list_projects' %}">Main</a>
-            <a href="{% url 'create_task' %}">Create a task</a>
-        </nav>
-    </header>
     <main>
         <div>
           <h1>{{ project.name }}</h1>
