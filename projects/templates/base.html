@@ -4,8 +4,7 @@
 <html lang="en">
     <head>
         <title>
-            {% block title %}
-            {% endblock title %}
+            Project Alpha
         </title>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-compatible" content="IE=edge">
@@ -13,6 +12,31 @@
         <link rel="stylesheet" href="{% static "css/receipts.css" %}">
     </head>
     <body>
+        <header>
+            <nav>
+                <ul>{% if user.is_authenticated %}</ul>
+                    <li>
+                        <a class="hover-white" href="{% url 'show_my_tasks' %}">My tasks</a>
+                    </li>
+                    <li>
+                        <a class="hover-white" href="{% url 'list_projects' %}">My Projects</a>
+                    </li>
+                    <li>
+                        <a class="hover-white" href="{% url 'logout' %}">Logout</a>
+                    </li>
+                    {% else %}
+                    <li>
+                        <a href="{% url 'login' %}">Login</a>
+                    </li>
+                    <li>
+                        <a class="hover-white" href="{% url 'signup' %}">Signup</a>
+                    </li>
+                    {% endif %}
+                    {% block nav %}
+                    {% endblock nav %}
+
+            </nav>
+        </header>
         {% block content %}
         {% endblock content %}
     </body>

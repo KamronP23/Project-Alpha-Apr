@@ -1,47 +1,35 @@
 {% extends 'base.html' %}
-
-{% block title %}
-    Home
-{% endblock title %}
+{% block nav %}
+<li>
+    <a class="hover-white" href="{% url 'create_project' %}">Create a new project</a>
+</li>
+{% endblock nav%}
 {% block content %}
-    <header>
-        <div>
-            <nav>
-                <a href="{% url 'login' %}">Login</a>
-                <a class="hover-white" href="{% url 'show_my_tasks' %}">Show my tasks</a>
-                <a class="hover-white" href="{% url 'logout' %}">Logout</a>
-                <a class="hover-white" href="{% url 'signup' %}">Sign up</a>
-                <a class="hover-white" href="{% url 'create_project' %}">Create a new project</a>
-
-            </nav>
-        </div>
-    </header>
-    <main>
-        <div>
-            <h1>My Projects</h1>
-            {% if list_projects.exists %}
-            <table>
-                <thead>
-                        <tr>
-                        <th>Names</th>
-                        <th>Number of tasks</th>
-                    </tr>
-                <tbody>
-                    {% for project in list_projects %}
-                        <tr>
-                            <td>
-                                <a href="{% url 'show_project' project.id %}">{{ project.name }}</a>
-                            </td>
-                            <td>{{ project.tasks.all|length }}</td>
-
-                        </tr>
-                    {% endfor %}
-                </tbody>
+<main>
+    <div>
+    <h1>My Projects</h1>
+    {% if list_projects.exists %}
+        <table>
+            <thead>
+            <tr>
+                <th>Names</th>
+                <th>Number of tasks</th>
+            </tr>
+            <tbody>
+    {% for project in list_projects %}
+            <tr>
+                <td>
+                <a href="{% url 'show_project' project.id %}">{{ project.name }}</a>
+                </td>
+                <td>{{ project.tasks.all|length }}</td>
+            </tr>
+    {% endfor %}
+            </tbody>
             </thead>
         </table>
-            {% else %}
-            <p>You are not assigned to any projects</p>
-        {% endif %}
+    {% else %}
+        <p>You are not assigned to any projects</p>
+    {% endif %}
     </div>
-    </main>
+</main>
 {% endblock content %}

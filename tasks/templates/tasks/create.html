@@ -1,23 +1,14 @@
 {% extends 'base.html' %}
-
-{% block title %}
-Create
-{% endblock title %}
-
 {% block content %}
-<header>
-    <nav>
-      <a href="{% url 'list_projects' %}">Main page</a>
-    </nav>
-  </header>
-  <main>
+
+<main>
     <div>
-    <h1>Create a new task</h1>
+        <h1>Create a new task</h1>
     <form method="post">
       {% csrf_token %}
       {{ form.as_p }}
       <button>Create</button>
     </form>
     </div>
-  </main>
+</main>
 {% endblock content %}
